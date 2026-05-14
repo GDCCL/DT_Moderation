@@ -58,7 +58,10 @@ CREATE TABLE IF NOT EXISTS learner_grades (
   part_b REAL,
   total REAL,
   band TEXT,
-  was_sampled INTEGER NOT NULL DEFAULT 0
+  was_sampled INTEGER NOT NULL DEFAULT 0,
+  ai_percentage REAL,
+  ai_band TEXT,
+  verdict TEXT
 );
 
 CREATE TABLE IF NOT EXISTS moderator_themes (
@@ -97,11 +100,15 @@ def hash_uln(uln, salt):
 def connect():
     conn = sqlite3.connect(DB_PATH)
     conn.executescript(SCHEMA)
-    # Migration: add lo_id to existing moderator_themes tables that pre-date it.
-    cols = [r[1] for r in conn.execute("PRAGMA table_info(moderator_themes)").fetchall()]
-    if "lo_id" not in cols:
+    # Migrations: add new columns to existing tables that pre-date them.
+    theme_cols = [r[1] for r in conn.execute("PRAGMA table_info(moderator_themes)").fetchall()]
+    if "lo_id" not in theme_cols:
         conn.execute("ALTER TABLE moderator_themes ADD COLUMN lo_id TEXT")
-        conn.commit()
+    grade_cols = [r[1] for r in conn.execute("PRAGMA table_info(learner_grades)").fetchall()]
+    for col, decl in [("ai_percentage", "REAL"), ("ai_band", "TEXT"), ("verdict", "TEXT")]:
+        if col not in grade_cols:
+            conn.execute(f"ALTER TABLE learner_grades ADD COLUMN {col} {decl}")
+    conn.commit()
     return conn
 
 
@@ -142,7 +149,8 @@ def cmd_record_pass():
     for l in learners:
         cur.execute(
             "INSERT INTO learner_grades (pass_id, learner_key, module_code, cohort_code, "
-            "part_a, part_b, total, band, was_sampled) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            "part_a, part_b, total, band, was_sampled, ai_percentage, ai_band, verdict) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             (
                 pass_id,
                 hash_uln(l["uln"], salt),
@@ -153,6 +161,9 @@ def cmd_record_pass():
                 l.get("total"),
                 l.get("band"),
                 1 if l.get("was_sampled") else 0,
+                l.get("ai_percentage"),
+                l.get("ai_band"),
+                l.get("verdict"),
             ),
         )
     for t in themes:
@@ -216,12 +227,20 @@ def cmd_summary(module, cohort=None):
         args,
     ).fetchall()
 
+    agreement = conn.execute(
+        f"SELECT verdict, COUNT(*) AS n, AVG(total - ai_percentage) AS mean_delta "
+        f"FROM learner_grades WHERE {where} AND ai_percentage IS NOT NULL "
+        f"GROUP BY verdict ORDER BY n DESC",
+        args,
+    ).fetchall()
+
     result = {
         "scope": {"module": module, "cohort": cohort},
         "overall": dict(overall) if overall else {},
         "bands": [dict(b) for b in bands],
         "top_themes": [dict(t) for t in themes],
         "themes_by_lo": [dict(r) for r in by_lo],
+        "ai_tutor_agreement": [dict(r) for r in agreement],
         "recent_passes": [dict(p) for p in passes],
     }
     print(json.dumps(result, indent=2, default=str))

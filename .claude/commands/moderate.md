@@ -79,36 +79,91 @@ Build a sample of **at least 6 learners** that spans every populated band — mi
 
 Show the sample plan to the user (names + bands + tutor) and **wait for confirmation** before writing anything to the xlsx.
 
-## Step 4 — Moderate each sampled learner
+## Step 4 — Moderate each sampled learner via the four-agent pipeline
 
-For each confirmed learner, in order:
+Moderation must not "mark its own homework". For each sampled learner, you orchestrate four subagents with strict information firewalls:
 
-1. Locate `modules/$1/cohorts/$2/<Learner Name>/`. If the folder is missing or empty, note this and skip — do not invent content.
+```
+       ┌──────────────────────────┐    ┌──────────────────────────┐
+       │ Agent 1                  │    │ Agent 3                  │
+       │ independent-assessor     │    │ feedback-auditor         │
+       │  sees: brief, rubric,    │    │  sees: brief, rubric,    │
+       │        learner work      │    │        tutor Comments    │
+       │  must not see: tutor     │    │  must not see: learner   │
+       │  grade/Comments          │    │  work, AI assessment     │
+       └────────────┬─────────────┘    └────────────┬─────────────┘
+                    │                               │
+                    ▼                               │
+       ┌──────────────────────────┐                 │
+       │ Agent 2                  │                 │
+       │ assessment-comparator    │                 │
+       │  sees: Agent 1 output,   │                 │
+       │        tutor grade,      │                 │
+       │        tutor Comments    │                 │
+       └────────────┬─────────────┘                 │
+                    │                               │
+                    └─────────────┬─────────────────┘
+                                  ▼
+                     ┌──────────────────────────┐
+                     │ Agent 4                  │
+                     │ moderation-writer        │
+                     │  sees: Agent 2 + 3 out,  │
+                     │        AI strengths/imps │
+                     │  writes the xlsx         │
+                     └──────────────────────────┘
+```
 
-2. Walk the folder. Handle by file type:
-   - `.pdf`, `.md`, `.txt`, source code: read directly.
-   - `.docx`: convert as in Step 1.
-   - `.xlsx`: dump via `scripts/xlsx_io.py`.
-   - `.mp4`, `.mov`, `.wav`, `.mp3`: **do not attempt to read.** Add the file to this learner's "needs human review" list and call it out in the moderator comment.
-   - Git repos / nested project folders: read the README first, then sample top-level source files. Don't try to read every file.
+You (the orchestrator) hold the full picture from the xlsx but only pass each agent the slice it's allowed to see. Agents 1 and 3 are independent — launch them in parallel (one tool-call message with two `Agent` invocations). Agents 2 and 4 are sequential.
 
-3. Read the `Comments` column for this learner from the xlsx — that's the tutor's feedback. Use it as context but form your own view independently.
+### Per-learner orchestration
 
-4. Assess the work against the brief and the **level rubric loaded in Step 1**. For each of the 10 criteria where the submission produces enough evidence to judge, identify which band the work falls into and quote (or closely paraphrase) the relevant descriptor. Decide whether the awarded `Total Calculation` is defensible: the awarded band should match the modal band across the criteria that the module's LOs actually exercise.
+For each confirmed learner, with row index `R`:
 
-5. Write to the xlsx:
+1. **Locate the learner folder.** `modules/$1/cohorts/$2/<Learner Name>/`. If missing or empty, note it and skip — do not run any agents.
+
+2. **Compute the tutor's band** from `Total Calculation`:
    ```
-   python3 scripts/xlsx_io.py set modules/$1/cohorts/$2/grades.xlsx <sheet> <row> "Moderation sample?" "Y"
-   python3 scripts/xlsx_io.py set modules/$1/cohorts/$2/grades.xlsx <sheet> <row> "Moderation Comments" "<comment>"
+   python3 scripts/rubric.py band $1 <total>
    ```
-   The comment must:
-   - State whether you agree with the awarded band, with one-line rationale.
-   - Cite at least one **rubric criterion** with the band you'd place the work in, naming both (e.g. "Critical Thinking — Very Good: arguments coherently expressed and well-supported"). The cited band's descriptor must come from the level rubric loaded in Step 1.
-   - Tie that criterion back to the relevant **learning outcome ID** for this module via the LO → criterion map you built in Step 1.4 (e.g. "evidences LO2 strongly").
-   - Reference module challenges by ID (`MCA`, `MCB`) when commenting on weighting/coverage.
-   - Flag any video/audio artefacts that need human review.
-   - Stay concise — target 80–150 words.
-   - Contain **no names** other than the learner's first name once (or none). Do not mention other learners, the tutor's name, or employer specifics.
+
+3. **Launch Agent 1 and Agent 3 in parallel** (one message, two `Agent` tool calls):
+
+   - `subagent_type: "independent-assessor"`, prompt containing:
+     - Module code `$1`
+     - Learner folder path `modules/$1/cohorts/$2/<Learner Name>/`
+     - Brief path `modules/$1/brief.*`
+     - Rubric path `rubrics/L<level>.json`
+     - The module catalogue JSON (from `scripts/programme.py module $1`)
+     - **Explicitly do not** include the tutor's `Total Calculation`, `Comments`, or any pre-existing `Moderation Comments`.
+
+   - `subagent_type: "feedback-auditor"`, prompt containing:
+     - Module code `$1`
+     - The tutor's `Comments` text verbatim
+     - Brief path
+     - Rubric path
+     - The module catalogue JSON
+     - **Explicitly do not** include the learner folder path or the AI assessment.
+
+4. **Launch Agent 2** once Agent 1 returns. `subagent_type: "assessment-comparator"`, prompt containing:
+   - The full Agent 1 JSON output
+   - Tutor `Total Calculation` (numeric)
+   - Tutor band (from Step 4.2)
+   - Tutor `Comments` text
+
+5. **Launch Agent 4** once both Agent 2 and Agent 3 have returned. `subagent_type: "moderation-writer"`, prompt containing:
+   - `xlsx_path`: `modules/$1/cohorts/$2/grades.xlsx`
+   - `sheet`: the working sheet name
+   - `row`: `R`
+   - `module_code`: `$1`
+   - The Agent 2 JSON output (comparator)
+   - The Agent 3 JSON output (feedback auditor)
+   - From Agent 1: just the `strengths`, `improvements`, `general_feedback`, and `human_review_flags` arrays (NOT the full criterion ratings — Agent 2 already distilled those)
+
+6. **Retain** Agent 1's full JSON and Agent 2's verdict in your working notes — you'll need them for Step 5 (overall summary) and Step 6 (DB payload).
+
+7. **Optional persistence.** Save Agent 1's full output to `modules/$1/cohorts/$2/<Learner Name>/ai_assessment.json` (the folder is gitignored, so this stays local). Provides a paper trail if the moderation is later audited.
+
+If any agent fails or returns malformed JSON, surface the error to the user, skip the xlsx write for that learner, and continue with the next.
 
 ## Step 5 — Overall module moderation summary
 
@@ -128,7 +183,7 @@ This step is mandatory and runs after the xlsx is updated.
 
 1. Verify the analytics DB is initialised. If `analytics.db` or `.env` is missing, tell the user to run `python3 scripts/db.py init` and stop.
 
-2. Build a JSON payload covering **every** learner in the cohort (not just sampled ones — full cohort gives proper band distributions). Shape:
+2. Build a JSON payload covering **every** learner in the cohort (not just sampled ones — full cohort gives proper band distributions). For sampled learners, include the AI percentage / band / comparator verdict drawn from Agents 1 and 2. Shape:
    ```json
    {
      "module_code": "$1",
@@ -136,7 +191,9 @@ This step is mandatory and runs after the xlsx is updated.
      "overall_summary": "<the Step 5 summary, anonymised>",
      "learners": [
        {"uln": "<ULN as string>", "part_a": 65, "part_b": 70,
-        "total": 67.5, "band": "Merit", "was_sampled": true}
+        "total": 67.5, "band": "Very Good", "was_sampled": true,
+        "ai_percentage": 64.0, "ai_band": "Very Good",
+        "verdict": "endorse"}
      ],
      "themes": [
        {"theme": "<short kebab-case label>", "count": <n>,
@@ -148,7 +205,9 @@ This step is mandatory and runs after the xlsx is updated.
 
    - Omit `part_b` for Part A-only modules.
    - Skip learners with no ULN (warn the user).
-   - Themes are short labels keyed to rubric criteria, e.g. `critical-thinking-strong`, `digital-proficiency-thin`, `professionalism-evidenced-via-collaboration`, or cross-cutting patterns like `tutor-under-marking-very-good-band`. Aim for 3–8 themes total, with `count` reflecting how many sampled learners showed each.
+   - `ai_percentage`, `ai_band`, `verdict`: include for sampled learners only (leave null for the rest).
+   - `verdict` values come from the comparator: `endorse` / `endorse-with-note` / `escalate`.
+   - Themes are short labels keyed to rubric criteria, e.g. `critical-thinking-strong`, `digital-proficiency-thin`, `professionalism-evidenced-via-collaboration`, or cross-cutting patterns like `tutor-under-marking-very-good-band`. Aim for 3–8 themes total, with `count` reflecting how many sampled learners showed each. Draw themes from the comparator's `criteria_disagreements` and the auditor's `issues`.
    - **Set `lo_id`** to the relevant LO (`LO1`–`LO4`) for the module when the theme maps to a criterion that the LO exercises (use the LO → criterion map from Step 1.4). Omit `lo_id` for cross-cutting themes (e.g. tutor-level patterns).
 
 3. Pipe the payload to the DB script:
