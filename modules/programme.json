@@ -541,54 +541,48 @@
 		},
 		{
 			"code": "DT604",
-			"title": "Project Report",
+			"title": "End Point Assessment (Project Report)",
 			"description": "",
 			"moduleChallenge": [
 				{
 					"id": "MCA",
-					"title": "To be updated",
-					"weighting": 50,
-					"learningOutcomes": ["LO1", "LO2"]
-				},
-				{
-					"id": "MCB",
-					"title": "Project and Portfolio Presentation",
-					"weighting": 50,
-					"learningOutcomes": ["LO2", "LO3", "LO4"]
+					"title": "EPA Project Report",
+					"weighting": 100,
+					"learningOutcomes": ["LO1", "LO2", "LO3", "LO4"]
 				}],
 			"learningOutcomes": [
 				{
 					"id": "LO1",
-					"description": "Critically reflect upon project outcomes, evaluating professional working practices communicating with good understanding of audience and purpose.",
+					"description": "Critically reflect upon project outcomes, evaluate professional working practices, and communicate with a good understanding of the audience and purpose.",
 					"programmeLearningOutcomes": [
 						"Critical Thinking",
-						"Professionalism",
-						"Discipline Skills and Knowledge",
-						"Communication"
+						"Practical Realisation",
+						"Informed Decision Making"
 					]
 				},
 				{
 					"id": "LO2",
-					"description": "Communicate findings from data analysis solution project with good understanding of audience and relevance to organisational business context",
+					"description": "Communicate findings from the data analysis solution project with a good understanding of the audience and relevance to the organisational business context.",
 					"programmeLearningOutcomes": [
-						"Professionalism",
-						"Communication"
+						"Communication",
+						"Digital Proficiency"
 					]
 				},
 				{
 					"id": "LO3",
 					"description": "Employ a range of digital tools to produce a developmental portfolio demonstrating application of knowledge, skills and behaviours",
 					"programmeLearningOutcomes": [
-						"Digital Proficiency",
-						"Communication"
+						"Professionalism",
+						"Collaboration"
 					]
 				},
 				{
 					"id": "LO4",
-					"description": "Communicate arguments and reasoning effectively demonstrating application of knowledge, skills and behaviours with good understanding of audience and relevance to organisational business context.",
+					"description": "Communicate arguments and reasoning effectively, demonstrating application of knowledge, skills and behaviours with a good understanding of the audience and relevance to the organisational business context.",
 					"programmeLearningOutcomes": [
-						"Discipline Skills and Knowledge",
-						"Communication"
+						"Critical Thinking",
+						"Communication",
+						"Informed Decision Making"
 					]
 				}
 			]

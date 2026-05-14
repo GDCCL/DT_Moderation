@@ -7,12 +7,16 @@ You are reporting analytics from the moderation tool's anonymised SQLite databas
 
 The user invoked: `/analytics $ARGUMENTS`
 
-Parse `$ARGUMENTS`:
-- `$1` = module code (e.g. `DT604`) — **required**
-- `$2` = cohort code (e.g. `Sep23`) — optional
-- Anything after the recognised positional args is a free-form natural-language question.
+## Argument parsing
 
-If `$1` is missing, tell the user the expected form and stop.
+Parse `$ARGUMENTS` as:
+- `<module>` = the first whitespace-delimited token (e.g. `DT604`) — **required**.
+- `<cohort>` = optional second positional. **May contain internal whitespace** (e.g. `Sep 23`). If present, expect it either quoted (`"Sep 23"`) or as a clearly cohort-shaped token (typically a short label like `Sep23`, `Jan24`, or a month-year pair). If the user supplied an unquoted multi-word value followed by a free-form question, the cohort/question split is ambiguous — ask them to re-issue with the cohort quoted.
+- Anything after the recognised positional args is a **free-form natural-language question**.
+
+If `<module>` is missing, tell the user the expected form (`/analytics <module> [<cohort>] [question]`) and stop.
+
+Whenever you use these values in shell commands, **double-quote** them so embedded spaces survive.
 
 ## Prerequisites
 
@@ -26,7 +30,7 @@ If either is missing, tell the user to run `python3 scripts/db.py init` and stop
 Always start by fetching the standard summary:
 
 ```
-python3 scripts/db.py summary $1 [$2]
+python3 scripts/db.py summary "<module>" ["<cohort>"]
 ```
 
 The script returns JSON with:
@@ -38,13 +42,13 @@ The script returns JSON with:
 
 Cross-reference the LO IDs against the programme catalogue so the user sees outcome descriptions, not just IDs:
 ```
-python3 scripts/programme.py los $1
+python3 scripts/programme.py los "<module>"
 ```
 For each `lo_id` returned in `themes_by_lo`, find the matching description AND its `programmeLearningOutcomes` mapping — those programme-level outcome names correspond 1:1 to the rubric criteria. So the same theme volume can be rolled up to rubric criteria for an audience that thinks in marking-rubric terms.
 
 Render this for the user as a compact, readable report:
 
-- Headline line: "`DT604 — Project Report` / Sep23 — 18 learners moderated across 1 pass."
+- Headline line: "`DT604 — End Point Assessment (Project Report)` / Sep 23 — 18 learners moderated across 1 pass."
 - Band distribution as a simple table or list.
 - Mean / min / max total.
 - Top 5–10 themes with counts.
@@ -65,18 +69,19 @@ Schema you can query against:
 ```
 moderation_passes(id, module_code, cohort_code, run_at, sample_size, overall_summary)
 learner_grades(pass_id, learner_key, module_code, cohort_code,
-               part_a, part_b, total, band, was_sampled)
+               part_a, part_b, total, band, was_sampled,
+               ai_percentage, ai_band, verdict)
 moderator_themes(pass_id, module_code, cohort_code, theme, count, notes, lo_id)
 ```
 
 Constraints:
 - Only `SELECT` is permitted. The script rejects anything else.
 - `learner_key` is a salted SHA-256 hash — do not try to reverse it.
-- For cross-cohort comparisons, group by `cohort_code`. For cross-module, group by `module_code`.
+- For cross-cohort comparisons, group by `cohort_code`. For cross-module, group by `module_code`. Remember that cohort codes can contain spaces — quote them in SQL string literals.
 - When a query returns more than ~20 rows, summarise rather than dumping all rows.
 
 Examples of questions to expect:
-- "How does Sep23 compare to Jan23 on DT604?" → group by cohort, compare means and band distributions.
+- "How does Sep 23 compare to Jan 23 on DT604?" → group by cohort, compare means and band distributions.
 - "Which themes show up across every cohort?" → group by theme, count distinct cohort_codes.
 - "Which LO is the weakest cohort-wide on DT604?" → group by `lo_id`, sum `count`, cross-reference description from `programme.py los DT604`.
 - "Are there learners (anonymised) showing up in multiple modules with declining totals?" → join on `learner_key` across modules, look for negative deltas.

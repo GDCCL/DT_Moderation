@@ -65,23 +65,97 @@ def find_module(programme, code):
     sys.exit(f"Module {code} not in programme catalogue.")
 
 
-def read_xlsx_rows(path):
+def _pick_data_sheet(wb):
+    """Pick the sheet whose header row contains both Name and ULN.
+
+    Prefer sheet names containing 'learner' or 'grade' (case-insensitive)
+    so we ignore companion sheets like 'Moderation Report'.
+    """
+    def has_name_and_uln(name):
+        try:
+            row = next(wb[name].iter_rows(min_row=1, max_row=1))
+        except StopIteration:
+            return False
+        headers = {(c.value or "").strip().lower() for c in row if isinstance(c.value, str)}
+        return "name" in headers and "uln" in headers
+
+    candidates = [n for n in wb.sheetnames if has_name_and_uln(n)]
+    if not candidates:
+        return None
+    preferred = [n for n in candidates if any(t in n.lower() for t in ("learner", "grade"))]
+    return preferred[0] if preferred else candidates[0]
+
+
+def read_xlsx_rows(path, module_meta=None):
+    """Read learner rows from the grades xlsx.
+
+    Auto-detects the data sheet, normalises whitespace in header keys, and
+    filters to rows where ULN is a 10-digit integer and Name is non-empty
+    (this skips stats blocks like the Grade Distribution grid).
+
+    Recomputes `Total Calculation` from Part A and Part B using the module
+    catalogue's MCA / MCB weightings when the cached cell value is missing —
+    openpyxl drops cached formula results when writing the workbook back,
+    so any cohort whose xlsx has been edited by `xlsx_io.py set` ends up
+    with empty Total Calculation cells until a spreadsheet app recomputes.
+    """
     try:
         from openpyxl import load_workbook
     except ImportError:
         sys.exit("openpyxl required. Run: pip install openpyxl")
     wb = load_workbook(path, read_only=True, data_only=True)
-    ws = wb.active
-    headers = [c.value for c in next(ws.iter_rows(min_row=1, max_row=1))]
+    sheet = _pick_data_sheet(wb)
+    if sheet is None:
+        sys.exit(f"No sheet in {path.name} contains both 'Name' and 'ULN' headers.")
+    ws = wb[sheet]
+    raw_headers = [c.value for c in next(ws.iter_rows(min_row=1, max_row=1))]
+    headers = [h.strip() if isinstance(h, str) else h for h in raw_headers]
+
+    weights = {"MCA": None, "MCB": None}
+    if module_meta:
+        for ch in module_meta.get("moduleChallenge", []):
+            if ch.get("id") in weights:
+                weights[ch["id"]] = ch.get("weighting")
+
+    def compute_total(part_a, part_b):
+        a_num = part_a if isinstance(part_a, (int, float)) else None
+        b_num = part_b if isinstance(part_b, (int, float)) else None
+        wa, wb_ = weights.get("MCA"), weights.get("MCB")
+        if a_num is not None and b_num is not None and wa and wb_:
+            return (a_num * wa + b_num * wb_) / (wa + wb_)
+        if a_num is not None and (wa is None or wb_ is None):
+            return a_num
+        if a_num is not None and wb_ is None:
+            return a_num
+        return None
+
     rows = []
     for row in ws.iter_rows(min_row=2, values_only=True):
         if all(v is None for v in row):
             continue
-        rec = {}
-        for h, v in zip(headers, row):
-            rec[h] = v
+        rec = {h if h else f"_col{i+1}": v for i, (h, v) in enumerate(zip(headers, row))}
+        uln = rec.get("ULN")
+        if uln is None or not str(uln).strip().isdigit() or len(str(uln).strip()) != 10:
+            continue
+        name = rec.get("Name")
+        if not (isinstance(name, str) and name.strip()):
+            continue
+        if not isinstance(rec.get("Total Calculation"), (int, float)):
+            rec["Total Calculation"] = compute_total(rec.get("Part A"), rec.get("Part B"))
         rows.append(rec)
     return rows
+
+
+def _find_grades_xlsx(cohort_dir):
+    """Resolve the grades xlsx: prefer grades.xlsx, else any *.xlsx (prefer 'Grade' in name)."""
+    default = cohort_dir / "grades.xlsx"
+    if default.exists():
+        return default
+    candidates = sorted(cohort_dir.glob("*.xlsx"))
+    if not candidates:
+        return None
+    grade_named = [c for c in candidates if "grade" in c.name.lower()]
+    return grade_named[0] if grade_named else candidates[0]
 
 
 def latest_pass(conn, module, cohort):
@@ -352,11 +426,13 @@ def cmd_generate(module, cohort, no_charts=False):
 
     module_dir = ROOT / "modules" / module
     cohort_dir = module_dir / "cohorts" / cohort
-    xlsx = cohort_dir / "grades.xlsx"
-    if not xlsx.exists():
-        sys.exit(f"Grades xlsx not found at {xlsx}.")
+    if not cohort_dir.exists():
+        sys.exit(f"Cohort folder not found at {cohort_dir}.")
+    xlsx = _find_grades_xlsx(cohort_dir)
+    if xlsx is None:
+        sys.exit(f"No xlsx file found in {cohort_dir}.")
 
-    rows = read_xlsx_rows(xlsx)
+    rows = read_xlsx_rows(xlsx, module_meta=module_meta)
     assessor_map = anonymise_assessors(rows)
 
     totals = [r.get("Total Calculation") for r in rows]
@@ -414,6 +490,10 @@ def cmd_generate(module, cohort, no_charts=False):
 
     inject = {}
     if not sys.stdin.isatty():
+        try:
+            sys.stdin.reconfigure(encoding="utf-8")
+        except (AttributeError, OSError):
+            pass
         raw = sys.stdin.read().strip()
         if raw:
             try:
@@ -450,7 +530,7 @@ def cmd_generate(module, cohort, no_charts=False):
 
     md = render_markdown(ctx)
     out_path = module_dir / f"moderation_{cohort}.md"
-    out_path.write_text(md)
+    out_path.write_text(md, encoding="utf-8")
     print(json.dumps({
         "ok": True,
         "report": str(out_path.relative_to(ROOT)),

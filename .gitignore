@@ -5,6 +5,9 @@ modules/*/cohorts/
 # Hash salt for analytics.db. Share with the team out of band; never commit.
 .env
 
+# Per-user Claude Code permissions allowlist — local to each machine.
+.claude/settings.local.json
+
 # Python
 __pycache__/
 *.pyc
