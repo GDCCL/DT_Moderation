@@ -1,0 +1,414 @@
+{
+  "rubric": [
+    {
+      "criterion": "Critical Thinking",
+      "description": "Critically reflect upon issues, concepts, theories and perspectives relevant to the subject, developing & evaluating complex arguments.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Descriptive, sometimes illogical or contradictory. Generalisations/statements made with scant evidence/references. Conclusions lack relevance validity."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Devises an argument/position on complex concepts and theories supported by appropriately selected and evaluated evidence/references to support own views and introduce other perspectives."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Devises logical arguments/position on complex concepts and theories supported by appropriately selected and evaluated evidence/references from a wider range to support own views and emerging evaluation other perspectives."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Devises coherent substantiated and thoughtful arguments/position on complex concepts and theories supported by critically evaluated evidence/ references from a good range to evaluate and synthesise a range of views."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Coherent substantiated and sophisticated arguments/position on complex concepts and theories supported by critically evaluated evidence/ references from a broad range to evaluate and synthesise a range of views with critical insight."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Coherent original substantiated and sophisticated arguments/position on complex concepts and theories supported by critically evaluated references from a comprehensive range to evaluate and synthesise a range of views critical insight."
+        }
+      ]
+    },
+    {
+      "criterion": "Creative Problem Solving",
+      "description": "Create and implement solutions to complex problems, using a range of problem solving tools and techniques.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Demonstrated an ability to apply a method appropriately to solve problems and make decisions in complex circumstances."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Consistently demonstrated an ability to apply a range of methods appropriately to solve problems and make decisions in complex circumstances."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Consistently demonstrated thorough ability to apply a range of methods appropriately to solve problems and make decisions in complex circumstances with some autonomy."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Consistently demonstrated thorough ability to justify the application of range of methods appropriately to solve problems and make decisions in complex circumstances with some autonomy."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Consistently demonstrated thorough ability to justify the application of range of well-developed methods to solve problems and make decisions in complex circumstances with a high degree of autonomy."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Consistently demonstrated thorough ability to justify the application of range of innovative (or innovatively employed) methods to solve problems and make decisions in complex circumstances with significant autonomy."
+        }
+      ]
+    },
+    {
+      "criterion": "Politically, socially, and environmentally responsible",
+      "description": "Critically evaluate political, social and environmental issues related to professional contexts.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Descriptive generalised statements made with scant evidence/references."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Devises an argument/position on complex issues and challenges supported by appropriately selected and evaluated evidence/references to support own views and introduce other perspectives."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Devises logical arguments/position on complex issues and challenges supported by appropriately selected and evaluated evidence/ references from a wider range to support own views and emerging evaluation other perspectives."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Devises coherent substantiated and thoughtful arguments/position on issues and challenges supported by critically evaluated evidence/ references from a good range to evaluate and synthesise a range of views."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Coherent substantiated and sophisticated arguments/position on complex on issues and challenges supported by critically evaluated evidence/ references from a broad range to evaluate and synthesise a range of views with critical insight."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Coherent original substantiated and sophisticated arguments/position on issues and challenges supported by critically evaluated references from a comprehensive range to evaluate and synthesise a range of views critical insight."
+        }
+      ]
+    },
+    {
+      "criterion": "Practical Realisation",
+      "description": "Critically evaluate and employ theories, skills and techniques to achieve practical outcomes in complex real world contexts/scenarios.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Limited evidence of ability to identify tools and methods appropriately and little evidence of application in the real world."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "The student has employed theories and skills to complete practical tasks and/or processes accurately and with a degree of independence."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "The student has employed theories and skills accurately to proficiently complete practical tasks and/or processes and with a degree of independence."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "The student has employed theories and skills accurately to autonomously and proficiently complete practical tasks and/or processes."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Employed theories and skills to autonomously and complete practical tasks and/or processes with a high degree of accuracy, coordination and proficiency."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Employed theories and skills to autonomously and complete practical tasks and/or processes with a high degree of innovation, accuracy, coordination and proficiency."
+        }
+      ]
+    },
+    {
+      "criterion": "Digital Proficiency",
+      "description": "Employ a range of digital tools to solve complex problems and support excellent communication.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Employed a range of digital tools, but followed a limited, procedural or mechanistic formula when problem solving and/or communicating, with little or no independence. "
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Employed a range of digital tools accurately to solve problems and communicate effectively, with a degree of independence."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Employed digital tools accurately to solve problems and communicate effectively, mainly independently in an accurate, well-coordinated and proficient way."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Employed digital tools accurately to solve problems and communicate effectively, autonomously, with accuracy and coordination."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Autonomously employed digital tools accurately to solve problems and communicate effectively, with a high degree of accuracy, coordination and proficiency."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Autonomously employed digital tools accurately to solve problems and communicate effectively, with an outstanding degree of accuracy, coordination and proficiency."
+        }
+      ]
+    },
+    {
+      "criterion": "Professionalism",
+      "description": "Critically evaluate and employ professional and ethical working practices, acting in the best interest of the organisation.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Descriptive generalised statements made with scant evidence/references. Little initiative/personal responsibility and ability to manage learning/work with minimal supervision."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Evaluation of professional practices/issues. Demonstration of initiative/personal responsibility and ability to manage learning/work with minimal supervision."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Good critical evaluation of professional practices/issues. Demonstration of initiative/personal responsibility and ability to manage learning/work without supervision."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Very Good critical evaluation of professional practices/issues and decision making. Well developed, systematic demonstration of initiative/personal responsibility and ability to manage learning/work without supervision."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Excellent critical evaluation of professional practices/issues and decision making. exceptional, systematic application of initiative/ personal responsibility and ability to manage learning/work without supervision."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Outstanding, fluent critical evaluation of professional practices/issues and decision making. exceptional, systematic application of initiative/personal responsibility and ability to manage learning/work without supervision."
+        }
+      ]
+    },
+    {
+      "criterion": "Collaboration",
+      "description": "Apply collaboration processes to facilitate effective working relationships, share ideas and address complex challenges for mutual benefit.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Shown limited evidence of facilitating working relationships or group discussions to address challenges with limited initiative or personal responsibility."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Demonstrated capability in facilitating working relationships or group discussions to address challenges, demonstrating some initiative and/or personal responsibility."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Demonstrated the capability to facilitate working relationships or group discussions to address challenges, consistently demonstrating initiative and/or personal responsibility."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Demonstrated the capability to make strong, valuable contributions to facilitate working relationships or group discussions to address challenges, consistently demonstrating well-developed initiatives and/or personal responsibility."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Demonstrated the capability to make excellent, valuable contributions to facilitate working relationships or group discussions to address challenges, consistently demonstrating well-developed initiatives and/or personal responsibility."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Demonstrated the capability to make outstanding, valuable contributions to facilitate working relationships or group discussions to address challenges, consistently demonstrating well-developed initiatives and/or personal responsibility."
+        }
+      ]
+    },
+    {
+      "criterion": "Informed Decision Making",
+      "description": "Employ a range of ideas that inform evidence-based decision making.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Demonstrated a limited ability to solve problems, lacking the required breadth or depth to make informed evidence-based decisions."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Demonstrated an ability to solve problems, apply depth of knowledge and understanding in key aspects of their field to make informed evidence-based decisions."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Demonstrated an ability to solve complex problems, applying sound breadth and depth of subject knowledge, selecting and applying a range of appropriate ideas to make informed evidence-based decisions."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Demonstrated thorough problem-solving skills, selecting and justifying their use of a wide-range of ideas, to make informed evidence-based decisions in complex and unpredictable circumstances with a degree of autonomy."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Demonstrated excellent problem-solving skills, selecting and justifying their use of a wide-range of ideas, to make informed evidence-based decisions in complex and unpredictable circumstances with a high degree of autonomy."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Demonstrated outstanding problem-solving skills, selecting and justifying their use of a wide-range of ideas, to make informed evidence-based decisions in complex and unpredictable circumstances with a high degree of autonomy."
+        }
+      ]
+    },
+    {
+      "criterion": "Discipline Skills and Knowledge",
+      "description": "Critique and employ a wide range of discipline-specific theories, concepts and skills, for complex business contexts.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Gaps in knowledge and superficial understanding of core knowledge and skills. Some inaccuracies."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Demonstrable application knowledge and skills core to the discipline."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Consistent demonstration and application of discipline knowledge and skills."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Capable and effective demonstration and application of discipline knowledge and skills."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Professionally accomplished demonstration and application of discipline knowledge and skills. A awareness of multiple perspectives in of theory in the knowledge base."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Accomplished and innovative application of discipline knowledge and skills. Awareness of multiple perspectives and the ambiguities and limitations of knowledge."
+        }
+      ]
+    },
+    {
+      "criterion": "Communication",
+      "description": "Communicate arguments and reasoning effectively, with a good understanding of audience and purpose within complex business contexts.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Communication may have some merit but is inappropriately pitched for the audience"
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Communicates in a range of formats appropriate to the discipline(s) audience and context with clear expression. Adequate numeracy and literacy skills."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Communicates confidently in a range of formats appropriate to the discipline(s) audience and context with clear, coherent expression. Good numeracy and literacy skills."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Communicates proficiently in a range of formats appropriate to the discipline(s) audience and context with fluent coherent expression. Very Good numeracy and literacy skills."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Accomplished communication of arguments and reasoning very effectively in a range of formats, appropriate to the discipline(s) audience and context. Excellent numeracy and literacy skills."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Accomplished communication of arguments and reasoning originally in a range of formats, appropriate to the discipline(s) audience and context.Exceptional numeracy and literacy skills"
+        }
+      ]
+    }
+  ]
+}

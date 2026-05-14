@@ -1,0 +1,414 @@
+{
+  "rubric": [
+    {
+      "criterion": "Critical Thinking",
+      "description": "Critically reflect upon issues, concepts, theories and perspectives relevant to the subject, developing multiple arguments.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Descriptive, sometimes illogical or contradictory. Generalisations/statements made with scant evidence/references. Conclusions lack relevance validity."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Some awareness of issues. Arguments emerging though not completely coherent. Some evidence/references to support views, but not always consistent. Some relevant conclusions."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Issues identified within given areas. An emerging awareness of different stances and ability to use evidence/references to support a coherent argument. Broadly valid conclusions."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Strong analytical ability. Acknowledgement of views of others. Arguments generally logical, coherently expressed, well organised and supported. Sound conclusions."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Excellent analysis. Perceptive and persuasive points made within given area. Explicit acknowledgement of other stances. Arguments well-articulated, and logically developed with a range of evidence/references. Strong conclusions."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Logical, articulate analysis a consistent feature. Persuasive points made throughout the work within a highly articulate, balanced argument. Judiciously selected evidence/references, drawn from relevant research. Convincing conclusions."
+        }
+      ]
+    },
+    {
+      "criterion": "Creative Problem Solving",
+      "description": "Analyse and develop solutions to problems, using a range of problem solving tools and techniques.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Limited evidence of ability to apply methods appropriately to address a problem."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Applies methods to address a problem, and some evidence of the complexity of the issues in the discipline."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Applies methods accurately to address a well-defined problem, appreciating the complexity of the issues."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Applies methods accurately to address a well-defined problem, examining the complexity of the issues."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Applies methods accurately and very effectively to address a well-defined problem, appreciating the complexity of the issues."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Applies methods accurately and highly effectively to address a well-defined problem, appreciating the complexity of a range of issues."
+        }
+      ]
+    },
+    {
+      "criterion": "Politically, socially, and environmentally responsible",
+      "description": "Analyse political, social and environmental issues related to a range of professional contexts.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Descriptive generalised statements made with scant evidence/references."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Some awareness of issues and some evidence/references to support views, but not always consistent."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Issues identified within given areas. An emerging awareness of the complexities."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Issues/challenges clearly identified within given areas. Awareness of the complexities examined and discussed with evidence/references."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Excellent  analysis of  complex issues/challenges developed with a range of evidence/references."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Logical, articulate analysis of complex business issues/challenges with judiciously selected evidence/references."
+        }
+      ]
+    },
+    {
+      "criterion": "Practical Realisation",
+      "description": "Analyse and apply theories, skills and techniques to achieve practical outcomes in a range of real-world contexts/scenarios.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Limited evidence of ability to identify tools and methods appropriately and little evidence of application in the real world."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Some method/tools/skills identified and used, applied to real world contexts."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Appropriate method/tools/skills identified and applied in a real world context, with some appreciation the complexity of the issues."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Method/tools identified and applied effectively in a real world context appreciating the complexity of the issues."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Method/tools identified and applied very effectively in a real world context appreciating the complexity of the issues."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Method/tools identified and applied in a real world context highly effectively appreciating the complexity of a range of issues."
+        }
+      ]
+    },
+    {
+      "criterion": "Digital Proficiency",
+      "description": "Analyse and apply digital tools to solve a range of problems and support effective communication.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Very limited evidence of ability to identify digital tools and methods and apply appropriately."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Some digital method/tools identified and evidence of appropriate use in solving basic problems."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Digital method/tools identified and applied, with some appreciation of the complexity of problems/communication."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Digital method/tools identified and applied appreciating and examining the complexity of the problems/communication."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Digital method/tools identified and applied very effectively appreciating the complexity of problems/communication."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Digital method/tools identified and applied accurately and highly effectively appreciating the complexity of a range problem/communication issues."
+        }
+      ]
+    },
+    {
+      "criterion": "Professionalism",
+      "description": "Apply professional and ethical working practices, acting in the best interest of the organisation.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Descriptive generalised statements made with scant evidence/references."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Some understanding of professional practices/issues and some evidence/references to support views, but not always consistent."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Understanding of professional practices/issues. An emerging awareness of ethical decision making."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Understanding of professional practices/issues clearly identified within given areas. Awareness of the complexities of ethical decision making supported by evidence."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Excellent understanding of professional practices/issues with an appreciation of the complexities of ethical decision making supported by a range of evidence."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Logical, articulate understanding of professional practices/issues with a strong appreciation of the complexities of ethical decision making supported by a range of evidence."
+        }
+      ]
+    },
+    {
+      "criterion": "Collaboration",
+      "description": "Apply collaboration processes to facilitate effective working relationships, share ideas and address challenges for mutual benefit.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Limited evidence of collaboration processes and skills identified for the assessment at this level."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Some understanding of collaboration processes, with some evidence of working with others as a member of a group, or with stakeholders."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Good understanding of collaboration processes, with evidence of working with others as a member of a group, or with stakeholders."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Clear understanding of collaboration processes, with evidence of working with others as a member of a group, or with stakeholders supported with evidence."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Excellent understanding of collaboration processes, with evidence of working with others as a member of a group, or with stakeholders supported with evidence."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Excellent understanding of collaboration processes, with judgement and evidence of the complexity of working with others as a member of a group, or with stakeholders."
+        }
+      ]
+    },
+    {
+      "criterion": "Informed Decision Making",
+      "description": "Analyse and reflect on a range of ideas that inform evidence-based decision making.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Descriptive, sometimes illogical or contradictory. Generalisations/statements made with scant evidence. Conclusions lack relevance validity."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Sense of argument emerging though not completely coherent. Some evidence to support views, but not always consistent. Some relevant conclusions."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Issues investigated within given areas with an emerging awareness of different perspectives and ability to use evidence to support a coherent argument. Broadly valid conclusions."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Strong analytical ability. Acknowledgement of views of others. Arguments generally logical, coherently expressed, well organised and supported. Sound conclusions."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Excellent  analysis. Arguments well-articulated, with multiple perspectives identified and logically developed with a range of evidence. Strong conclusions"
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Logical, articulate analysis a consistent feature. Persuasive points made throughout the work within a highly articulate, balanced argument. Judiciously selected evidence."
+        }
+      ]
+    },
+    {
+      "criterion": "Discipline Skills and Knowledge",
+      "description": "Examine and apply a range of discipline-specific theories, concepts and skills, for practical business contexts.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Gaps in knowledge and superficial understanding of core knowledge and skills. Some inaccuracies."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Broadly accurate knowledge and understanding of the  core knowledge and skills. Some elements missing and flaws evident."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Sound, routine knowledge and understanding of the core knowledge and skills, main concepts and key theories. Some flaws may be evident."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Consistent knowledge and understanding of the core knowledge and skills, examination of main concepts and key theories at this level."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Detailed knowledge and understanding of the main concepts/ theories at this level. Awareness of multiple perspectives in of theory in the knowledge base."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Highly detailed knowledge and understanding of material, concepts and theories for this level of study. Awareness of the ambiguities and limitations of knowledge."
+        }
+      ]
+    },
+    {
+      "criterion": "Communication",
+      "description": "Communicate arguments and reasoning effectively, with a good understanding of audience and purpose within a range of business contexts.",
+      "levels": [
+        {
+          "name": "Fail",
+          "range": "0-31%",
+          "description": ""
+        },
+        {
+          "name": "Insufficient",
+          "range": "32%-39%",
+          "description": "Communication may have some merit but is inappropriately pitched for the audience."
+        },
+        {
+          "name": "Satisfactory",
+          "range": "40%-49%",
+          "description": "Communicates in a range of formats, including orally, appropriate to the discipline(s) audience and purpose, but with evident weaknesses."
+        },
+        {
+          "name": "Good",
+          "range": "50% - 59%",
+          "description": "Communicates effectively in a range of formats, including orally, appropriate to the discipline(s), audience, and purpose."
+        },
+        {
+          "name": "Very Good",
+          "range": "60%-69%",
+          "description": "Communicates arguments well and consistently in a range of formats, including orally, appropriate to the discipline(s) audience and purpose."
+        },
+        {
+          "name": "Excellent",
+          "range": "70%-85%",
+          "description": "Communicates arguments and reasoning very effectively in a range of formats, including orally, appropriate to the discipline(s) audience and purpose."
+        },
+        {
+          "name": "Outstanding",
+          "range": ">85%",
+          "description": "Communicates arguments and reasoning highly effectively in a range of formats, including orally, appropriate to the discipline(s) audience and purpose."
+        }
+      ]
+    }
+  ]
+}

@@ -40,7 +40,7 @@ Cross-reference the LO IDs against the programme catalogue so the user sees outc
 ```
 python3 scripts/programme.py los $1
 ```
-For each `lo_id` returned in `themes_by_lo`, find the matching description and (optionally) roll up to programme-level learning outcomes via the `programmeLearningOutcomes` field on each LO.
+For each `lo_id` returned in `themes_by_lo`, find the matching description AND its `programmeLearningOutcomes` mapping — those programme-level outcome names correspond 1:1 to the rubric criteria. So the same theme volume can be rolled up to rubric criteria for an audience that thinks in marking-rubric terms.
 
 Render this for the user as a compact, readable report:
 
@@ -49,7 +49,7 @@ Render this for the user as a compact, readable report:
 - Mean / min / max total.
 - Top 5–10 themes with counts.
 - **LO breakdown**: each LO with its description and the cumulative count of themes touching it. Call out any LO with disproportionately high theme volume (likely cohort weakness) or with zero themes after multiple passes (potentially under-assessed).
-- **Programme-level rollup** (optional, only when several passes exist): aggregate LO theme counts by their `programmeLearningOutcomes` mapping.
+- **Rubric criterion rollup**: aggregate LO theme counts by their `programmeLearningOutcomes` mapping — those names are the rubric criteria. Present this section using criterion names (e.g. `Critical Thinking`, `Digital Proficiency`) rather than LO IDs, since that's the language the marking team uses.
 - Recent passes with `run_at` and `sample_size`.
 
 ## Step 2 — Free-form follow-up

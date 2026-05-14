@@ -15,10 +15,10 @@ If either is missing, tell the user the expected form and stop.
 
 ## Working paths
 
-- Brief:   `modules/$1/brief.*`   (one of `.pdf`, `.docx`, `.md`, `.txt`)
-- Rubric:  `modules/$1/rubric.*`
-- Cohort:  `modules/$1/cohorts/$2/`
-- Grades:  `modules/$1/cohorts/$2/grades.xlsx`
+- Brief:        `modules/$1/brief.*`   (one of `.pdf`, `.docx`, `.md`, `.txt`)
+- Level rubric: `rubrics/L<level>.json` — level is the second digit of the module code (`DT4xx` → L4, `DT5xx` → L5, `DT6xx` → L6). Use `python3 scripts/rubric.py level $1` to derive it.
+- Cohort:       `modules/$1/cohorts/$2/`
+- Grades:       `modules/$1/cohorts/$2/grades.xlsx`
 
 Stop and tell the user if any are missing.
 
@@ -31,20 +31,27 @@ Columns: `Name`, `ULN`, `PDE`, `Client`, `Status`, `Cohort`, `Part A`, `Part B` 
 - `Moderation Comments` is where the moderator comment goes.
 - `Total Calculation` is the figure to band on.
 
-## Step 1 — Load module context
+## Step 1 — Load module context, level rubric, and brief
 
-Pull the catalogue entry for the module:
-```
-python3 scripts/programme.py module $1
-```
-If the script errors, the module code is unknown — stop and tell the user the valid codes (the script lists them). Hold the returned record in working memory — you'll cite specific learning outcomes (`LO1`...`LO4`) and module challenges (`MCA`/`MCB`) by ID.
+1. Pull the catalogue entry:
+   ```
+   python3 scripts/programme.py module $1
+   ```
+   If the script errors, the module code is unknown — stop and tell the user the valid codes. Hold the returned record in working memory — you'll cite learning outcomes (`LO1`–`LO4`) and module challenges (`MCA`/`MCB`) by ID.
 
-Then read the brief and rubric. Keep both in working memory.
+2. Load the level rubric:
+   ```
+   python3 scripts/rubric.py for-module $1
+   ```
+   This returns 10 criteria (the same names that appear in the module's `programmeLearningOutcomes` mapping) with descriptors for 7 bands: `Fail` / `Insufficient` / `Satisfactory` / `Good` / `Very Good` / `Excellent` / `Outstanding`. Keep these descriptors in working memory — every moderator comment cites them.
 
-- `.pdf`, `.md`, `.txt`: use the Read tool directly.
-- `.docx`: convert via `pandoc <file> -t plain` or `python3 -c "from docx import Document; print('\n'.join(p.text for p in Document('<file>').paragraphs))"`.
+3. Read the brief.
+   - `.pdf`, `.md`, `.txt`: use the Read tool directly.
+   - `.docx`: convert via `pandoc <file> -t plain` or `python3 -c "from docx import Document; print('\n'.join(p.text for p in Document('<file>').paragraphs))"`.
 
-If neither works, tell the user how to install one and stop.
+   If neither docx path works, tell the user how to install one and stop.
+
+4. **Map the module's LOs to rubric criteria.** Each LO in the catalogue has a `programmeLearningOutcomes` list; those names match the 10 rubric criteria 1-to-1 (treat case and hyphen differences leniently — e.g. `Creative Problem-Solving` and `Creative Problem Solving` are the same). Build a mental map `LO_id → [criterion, …]` for the module. You'll use it when forming moderator comments and tagging themes.
 
 ## Step 2 — Read the grades xlsx
 
@@ -55,14 +62,16 @@ python3 scripts/xlsx_io.py rows    modules/$1/cohorts/$2/grades.xlsx <sheet>
 
 Determine whether the module has Part B by checking the column list. Note which sheet name is in use.
 
-## Step 3 — Sample across grade boundaries
+## Step 3 — Sample across rubric bands
 
-Bucket learners by `Total Calculation`:
-- **Distinction**: 70+
-- **Merit**: 60–69
-- **Pass (upper)**: 50–59
-- **Pass (lower)**: 40–49
-- **Refer / Fail**: < 40 or non-numeric (`Refer`, `Fail`, `R`)
+Bucket learners by `Total Calculation` using the rubric bands (`scripts/rubric.py band $1 <total>` returns the band for a percentage):
+- **Outstanding**: >85
+- **Excellent**: 70–85
+- **Very Good**: 60–69
+- **Good**: 50–59
+- **Satisfactory**: 40–49
+- **Insufficient**: 32–39
+- **Fail**: 0–31 (or non-numeric like `Refer`, `Fail`, `R`)
 
 Skip rows where `Status` clearly indicates the learner shouldn't be moderated (withdrawn, deferred). Surface these as a separate list to the user.
 
@@ -85,7 +94,7 @@ For each confirmed learner, in order:
 
 3. Read the `Comments` column for this learner from the xlsx — that's the tutor's feedback. Use it as context but form your own view independently.
 
-4. Assess the work against the brief and rubric. Decide whether the awarded `Total Calculation` is defensible against rubric criteria. Cite specific criteria.
+4. Assess the work against the brief and the **level rubric loaded in Step 1**. For each of the 10 criteria where the submission produces enough evidence to judge, identify which band the work falls into and quote (or closely paraphrase) the relevant descriptor. Decide whether the awarded `Total Calculation` is defensible: the awarded band should match the modal band across the criteria that the module's LOs actually exercise.
 
 5. Write to the xlsx:
    ```
@@ -94,7 +103,8 @@ For each confirmed learner, in order:
    ```
    The comment must:
    - State whether you agree with the awarded band, with one-line rationale.
-   - Cite at least one **rubric criterion** AND the relevant **learning outcome ID** (e.g. "evidences LO2 well via …", "thin on LO3 criterion 2"). The module's LOs come from Step 1's catalogue read.
+   - Cite at least one **rubric criterion** with the band you'd place the work in, naming both (e.g. "Critical Thinking — Very Good: arguments coherently expressed and well-supported"). The cited band's descriptor must come from the level rubric loaded in Step 1.
+   - Tie that criterion back to the relevant **learning outcome ID** for this module via the LO → criterion map you built in Step 1.4 (e.g. "evidences LO2 strongly").
    - Reference module challenges by ID (`MCA`, `MCB`) when commenting on weighting/coverage.
    - Flag any video/audio artefacts that need human review.
    - Stay concise — target 80–150 words.
@@ -138,8 +148,8 @@ This step is mandatory and runs after the xlsx is updated.
 
    - Omit `part_b` for Part A-only modules.
    - Skip learners with no ULN (warn the user).
-   - Themes are short labels you extract from your moderator comments — e.g. `lo2-well-evidenced`, `lo3-thin-on-criterion-2`, `tutor-under-marking-distinctions`. Aim for 3–8 themes total, with `count` reflecting how many sampled learners showed each.
-   - **Set `lo_id`** to the relevant learning outcome (`LO1`, `LO2`, `LO3`, `LO4`) when the theme is LO-specific. Omit `lo_id` for cross-cutting themes (e.g. tutor-level patterns). The catalogue read in Step 1 gives the valid LO IDs and their descriptions for this module.
+   - Themes are short labels keyed to rubric criteria, e.g. `critical-thinking-strong`, `digital-proficiency-thin`, `professionalism-evidenced-via-collaboration`, or cross-cutting patterns like `tutor-under-marking-very-good-band`. Aim for 3–8 themes total, with `count` reflecting how many sampled learners showed each.
+   - **Set `lo_id`** to the relevant LO (`LO1`–`LO4`) for the module when the theme maps to a criterion that the LO exercises (use the LO → criterion map from Step 1.4). Omit `lo_id` for cross-cutting themes (e.g. tutor-level patterns).
 
 3. Pipe the payload to the DB script:
    ```
