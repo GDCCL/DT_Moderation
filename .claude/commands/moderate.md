@@ -203,11 +203,19 @@ After all sampled learners are processed, write an overall summary into the xlsx
 2. A sheet named `Moderation Report` — the Corndel template. It has a pre-laid form in column A (`Moderated by`, `Date`, `Sample Size`, `Standard Deviation`, `Grade distribution comments`, `General Comments`, `Validity of grades`) with values expected in column B. Populate each row's column B; use `xlsx_io.py set` with the row index and column `B`. Multi-paragraph cells (General Comments, Validity of grades) should be written via the `@<path>` value syntax for newline safety.
 3. Neither present — ask the user where the summary should go (new sheet, dedicated cell, or appended row) before writing.
 
-**Content.** Write three substantive cells (or a single combined paragraph if the user prefers a free-form layout):
+**Style for the cohort summary cells.** These cells are read by the IQA and the programme team at a glance. They are deliberately **short and reflective** — 1–3 sentences each — not a detailed evidence dump. The rich narrative lives in the cohort report markdown (Step 7); the xlsx cells are a top-level summary.
 
-- **Grade distribution comments**: factual description of the cohort centroid (mean / median / mode / range / std dev) and the band distribution. Anonymised — refer to bands, not learners.
-- **General Comments**: 2–3 short paragraphs describing what is consistently strong across the sample (specific dimensions like Practical Realisation, ethical reasoning, quantified outcomes), what would benefit from more support (specific gaps like source breadth, written register, statistical rigour, brief compliance), and one short paragraph on tutor feedback patterns observed across the sample. Use the same descriptive vocabulary as the per-learner comments — no verdict counts, no escalation language, no AI-vs-tutor framing.
-- **Validity of grades**: 1–2 paragraphs noting which awards are well-evidenced and which have items warranting reviewer attention before sign-off (broken artefact links, brief-compliance breaches, missing references, format violations, EC-awaiting cases). Frame items as observations requiring confirmation, not as escalations.
+Do not enumerate learners, criteria, themes or counts in these cells. Do not use verdict words (`endorse`, `escalate`), AI-vs-tutor framing, or band names as a way to re-state the grade. Use qualitative reflective vocabulary similar to the per-learner comments.
+
+**Content per cell.** Use the form's column-A labels as anchors:
+
+- **Moderated by**: free-form attribution (e.g. "AI-orchestrated four-agent moderation pipeline").
+- **Date**: ISO date (YYYY-MM-DD).
+- **Sample Size**: one sentence — the proportion sampled, the number of bands covered, and any exclusions (e.g. EC cases).
+- **Standard Deviation**: one sentence — interpret the std dev rather than just stating it. Is the variation expected for the level? Does it indicate consistent rubric application across assessors? Example: "Standard deviation of 12.01 reflects expected variation for an L6 EPA cohort and indicates consistent application of the marking rubric across assessors."
+- **Grade distribution comments**: one sentence interpreting the shape of the distribution (which bands are populated, where attainment concentrates, whether absences at the tails are notable). Example: "The grade distribution spans four bands with a Very Good centroid; the absence of Outstanding, Insufficient or Fail outcomes may indicate the assessment is well-pitched for the cohort, though attainment is concentrated in the upper-middle of the rubric."
+- **General Comments**: 2–4 short sentences reflecting on cohort performance overall. Where do learners consistently do well (in qualitative terms — practical realisation, ethical reasoning, real-world deployment, etc.)? What is the principal area for cohort development? Educator-facing tone: think about what the programme team would want to hear about the cohort's learning. Example: "The cohort performed competently to strongly, with most learners delivering real-world data analytics solutions in their workplace contexts. Even lower-scoring submissions evidence genuine production deployment. The principal area for cohort development is academic underpinning — citing the works listed in bibliographies inline and engaging their methods in the body rather than decoratively."
+- **Validity of grades**: 2–3 short sentences noting which awards are well-evidenced and which carry items warranting reviewer attention before sign-off (frame items as observations requiring confirmation, not as escalations).
 
 Keep the summary anonymised throughout — refer to learners by band, count, or position in the distribution; never by name.
 
