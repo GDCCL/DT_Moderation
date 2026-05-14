@@ -218,17 +218,52 @@ This step is mandatory and runs after the xlsx is updated.
 
 4. Report the `pass_id` returned by the script.
 
-## Step 7 — Final report to the user
+## Step 7 — Generate the cohort moderation report
+
+Runs after the DB has been updated. Produces an anonymised markdown report at `modules/$1/moderation_$2.md` plus PNG charts under `modules/$1/charts/`. Both paths sit outside the gitignored `cohorts/` tree, so the report is shareable and version-controllable.
+
+1. **Aggregate qualitative material** across the sampled learners' Agent 1 outputs. Synthesise (don't just list):
+
+   - **3–5 cohort-level strengths** — recurring strengths across multiple learners. Each must be specific and rubric-anchored (cite a criterion). Phrase in third-person about the cohort, not about individuals. Anonymise.
+   - **3–5 cohort-level points for improvement** — recurring weaknesses or under-evidenced criteria. Same rubric-anchoring and anonymisation rules.
+   - **2–3 recommendations** — actions for the module team. Draw from comparator escalations, auditor issues, and patterns in the AI's improvement lists.
+
+2. **Build the injection JSON:**
+   ```json
+   {
+     "strengths":       ["...", "...", "..."],
+     "improvements":    ["...", "...", "..."],
+     "recommendations": ["...", "..."]
+   }
+   ```
+
+3. **Run the report generator**, piping the JSON via stdin:
+   ```
+   echo '<inject json>' | python3 scripts/report.py generate $1 $2
+   ```
+   The script reads the grades xlsx, the latest analytics-DB pass for this module/cohort, the programme catalogue and the level rubric. It computes overall stats (mean, median, std dev, range), the band distribution, per-assessor stats (anonymised as Assessor A/B/C), AI/tutor agreement (mean delta, verdict counts), and themes-by-LO. It renders charts via matplotlib where available; if matplotlib is missing, the report still generates without charts.
+
+4. **Verify the report.** Read the resulting `modules/$1/moderation_$2.md` and skim it for:
+   - No learner names anywhere (the script anonymises, but double-check the qualitative sections you wrote).
+   - Sample size and band distribution match what you actually moderated.
+   - Charts referenced in the report actually exist under `modules/$1/charts/`.
+
+   If matplotlib was missing, surface that fact to the user with the install hint.
+
+## Step 8 — Final report to the user
 
 Tell the user:
 - Which learners were sampled and from which bands
 - A one-line moderation outcome per sampled learner
 - Where the overall summary lives in the xlsx
 - The analytics `pass_id` and how many learners + themes were recorded
+- The path to the generated cohort report (`modules/$1/moderation_$2.md`) and whether charts were generated
 - Anything that needs follow-up
 
-Remind the user that `analytics.db` has changed locally — to share the new pass with collaborators they should:
+Remind the user that `analytics.db`, `modules/$1/moderation_$2.md`, and any new files under `modules/$1/charts/` have changed locally — to share with collaborators they should:
 ```
-git add analytics.db && git commit -m "Moderation pass: $1 $2" && git push
+git add analytics.db modules/$1/moderation_$2.md modules/$1/charts/
+git commit -m "Moderation pass: $1 $2"
+git push
 ```
 Do not run those commands yourself. The grades xlsx and learner folders are gitignored and stay local.
