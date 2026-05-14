@@ -68,16 +68,16 @@ Show the sample plan to the user (names + bands) and **wait for confirmation** b
 
 For each confirmed learner, in order:
 
-1. Locate `modules/$1/cohorts/$2/<Learner Name>/submission/`. If the folder is missing or empty, note this and skip — do not invent content.
+1. Locate `modules/$1/cohorts/$2/<Learner Name>/`. If the folder is missing or empty, note this and skip — do not invent content.
 
-2. Walk the submission folder. Handle by type:
+2. Walk the learner folder. Handle by type:
    - `.pdf`, `.md`, `.txt`, source code: read directly.
    - `.docx`: convert as in Step 1.
    - `.xlsx`: dump with `python3 scripts/xlsx_io.py columns ...` then `rows ...`.
    - `.mp4`, `.mov`, `.wav`, `.mp3`: **do not attempt to read.** Add to this learner's "needs human review" list and call it out in the moderator comment.
    - Git repos / nested project folders: read the README first, then sample top-level source files. Don't try to read every file.
 
-3. Read any tutor feedback file in the learner folder (e.g. `feedback.docx`, `feedback.md`). Use it as context but form your own view independently.
+3. Read any tutor assessment-feedback file in the learner folder (commonly `feedback.docx`, `feedback.md`, or similar). Use it as context but form your own view independently. Tutor feedback may also live in a column of the grades xlsx — read that too.
 
 4. Assess the work against the brief and rubric. Decide whether the awarded grade is defensible against rubric criteria. Cite specific criteria.
 
