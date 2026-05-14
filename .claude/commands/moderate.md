@@ -33,7 +33,13 @@ Columns: `Name`, `ULN`, `PDE`, `Client`, `Status`, `Cohort`, `Part A`, `Part B` 
 
 ## Step 1 — Load module context
 
-Read the brief and rubric. Keep both in working memory.
+Pull the catalogue entry for the module:
+```
+python3 scripts/programme.py module $1
+```
+If the script errors, the module code is unknown — stop and tell the user the valid codes (the script lists them). Hold the returned record in working memory — you'll cite specific learning outcomes (`LO1`...`LO4`) and module challenges (`MCA`/`MCB`) by ID.
+
+Then read the brief and rubric. Keep both in working memory.
 
 - `.pdf`, `.md`, `.txt`: use the Read tool directly.
 - `.docx`: convert via `pandoc <file> -t plain` or `python3 -c "from docx import Document; print('\n'.join(p.text for p in Document('<file>').paragraphs))"`.
@@ -88,7 +94,8 @@ For each confirmed learner, in order:
    ```
    The comment must:
    - State whether you agree with the awarded band, with one-line rationale.
-   - Cite at least one rubric criterion that supports the call.
+   - Cite at least one **rubric criterion** AND the relevant **learning outcome ID** (e.g. "evidences LO2 well via …", "thin on LO3 criterion 2"). The module's LOs come from Step 1's catalogue read.
+   - Reference module challenges by ID (`MCA`, `MCB`) when commenting on weighting/coverage.
    - Flag any video/audio artefacts that need human review.
    - Stay concise — target 80–150 words.
    - Contain **no names** other than the learner's first name once (or none). Do not mention other learners, the tutor's name, or employer specifics.
@@ -123,6 +130,7 @@ This step is mandatory and runs after the xlsx is updated.
      ],
      "themes": [
        {"theme": "<short kebab-case label>", "count": <n>,
+        "lo_id": "LO2",
         "notes": "<one-line explanation, anonymised>"}
      ]
    }
@@ -130,7 +138,8 @@ This step is mandatory and runs after the xlsx is updated.
 
    - Omit `part_b` for Part A-only modules.
    - Skip learners with no ULN (warn the user).
-   - Themes are short labels you extract from your moderator comments — e.g. `criterion-3-strong`, `evidence-thin-on-criterion-1`, `tutor-under-marking-distinctions`. Aim for 3–8 themes total, with `count` reflecting how many sampled learners showed each.
+   - Themes are short labels you extract from your moderator comments — e.g. `lo2-well-evidenced`, `lo3-thin-on-criterion-2`, `tutor-under-marking-distinctions`. Aim for 3–8 themes total, with `count` reflecting how many sampled learners showed each.
+   - **Set `lo_id`** to the relevant learning outcome (`LO1`, `LO2`, `LO3`, `LO4`) when the theme is LO-specific. Omit `lo_id` for cross-cutting themes (e.g. tutor-level patterns). The catalogue read in Step 1 gives the valid LO IDs and their descriptions for this module.
 
 3. Pipe the payload to the DB script:
    ```

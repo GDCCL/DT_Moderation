@@ -1,0 +1,597 @@
+{
+	"code": "DTSP",
+	"title": "BSc (Hons) Digital Technology Solutions Professional",
+	"modules": [
+		{
+			"code": "DT401",
+			"title": "Data Fundamentals",
+			"description": "In this module, you will be introduced to the fundamental concepts of data. You will examine data structures, database system design and the role of data management systems within a business context. You will explore organisational data structures and be introduced to data management methods. You will critically reflect upon data quality and data protection issues, reflecting on how they relate to business outcomes. During this module you will learn basic data analysis techniques, perform data management processes, examine the data analysis process and apply practical skills involved with managing and analysing data.",
+			"moduleChallenge": [
+				{
+					"id": "MCA",
+					"title": "Portfolio of data fundamentals challenges and reflections",
+					"weighting": 60,
+					"learningOutcomes": ["LO1", "LO2", "LO3"]
+				},
+				{
+					"id": "MCB",
+					"title": "Data Protection Infographic with annotated bibliography",
+					"weighting": 40,
+					"learningOutcomes": ["LO4"]
+				}],
+			"learningOutcomes": [
+				{
+					"id": "LO1",
+					"description": "Explain the roles and functions of technology solutions within an organization.",
+					"programmeLearningOutcomes": ["Discipline Skills and Knowledge"]
+				},
+				{
+					"id": "LO2",
+					"description": "Critically reflect upon data management systems and their role in digital and technology solutions.",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Discipline Skills and Knowledge"
+					]
+				},
+				{
+					"id": "LO3",
+					"description": "Select and apply appropriate data gathering methods for a given data analysis scenario.",
+					"programmeLearningOutcomes": ["Discipline Skills and Knowledge"]
+				},
+				{
+					"id": "LO4",
+					"description": "Understand relevant legal, ethical, social, and professional standards for a digital and technology solution.",
+					"programmeLearningOutcomes": [
+						"Digital Proficiency",
+						"Discipline Skills and Knowledge"
+					]
+				}
+			]
+		},
+		{
+			"code": "DT402",
+			"title": "Developing Data Projects",
+			"description": "In this module, you will be introduced to contemporary techniques for designing and developing software solutions for data projects. You will analyse both the technical and the organisational business requirements to develop, configure and deploy software solutions relating to business needs. You will develop your skills, knowledge and understanding of programming and programming concepts enabling you to develop data centric software artefacts that solve problems within a business context.",
+			"moduleChallenge": [
+				{
+					"id": "MCA",
+					"title": "Software Development Portfolio",
+					"weighting": 70,
+					"learningOutcomes": ["LO1", "LO3", "LO4"]
+				},
+				{
+					"id": "MCB",
+					"title": "Software Development Techniques Report",
+					"weighting": 30,
+					"learningOutcomes": ["LO2", "LO4"]
+				}],
+			"learningOutcomes": [
+				{
+					"id": "LO1",
+					"description": "Explain a range of software development techniques within a business context",
+					"programmeLearningOutcomes": ["Discipline Skills and Knowledge"]
+				},
+				{
+					"id": "LO2",
+					"description": "Critically reflect upon business and technical requirements to present a basic technology solution",
+					"programmeLearningOutcomes": ["Critical Thinking"]
+				},
+				{
+					"id": "LO3",
+					"description": "Explain and apply digital tools to develop software artefacts, identifying and solving problems",
+					"programmeLearningOutcomes": [
+						"Creative Problem Solving",
+						"Digital Proficiency"
+					]
+				},
+				{
+					"id": "LO4",
+					"description": "Explain common vulnerabilities and risks of unsecure code",
+					"programmeLearningOutcomes": [
+						"Digital Proficiency",
+						"Professionalism"
+					]
+				}
+			]
+		},
+		{
+			"code": "DT403",
+			"title": "Managing Technology Projects",
+			"description": "Throughout this module, you will be introduced to the processes involved with managing technology projects. You will understand the various contemporary methodologies such as DevOps, SCRUM and Agile, applying appropriate theories and practices to the management of a technology project. You will understand the importance of communication, critical thinking and problem-solving skills to ensure the successful completion of technology projects.",
+			"moduleChallenge": [
+				{
+					"id": "MCA",
+					"title": "Journalistic Article",
+					"weighting": 60,
+					"learningOutcomes": ["LO1", "LO2", "LO3"]
+				},
+				{
+					"id": "MCB",
+					"title": "Project Management Portfolio",
+					"weighting": 40,
+					"learningOutcomes": ["LO4"]
+				}],
+			"learningOutcomes": [
+				{
+					"id": "LO1",
+					"description": "Critically reflect upon how teams work effectively to produce digital and technology solutions.",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Discipline Skills and Knowledge"
+					]
+				},
+				{
+					"id": "LO2",
+					"description": "Explain the concepts and principles of leadership and management techniques and theories.",
+					"programmeLearningOutcomes": ["Discipline Skills and Knowledge"]
+				},
+				{
+					"id": "LO3",
+					"description": "Critically reflect upon cost and time constraints within a digital technology solution.",
+					"programmeLearningOutcomes": ["Critical Thinking"]
+				},
+				{
+					"id": "LO4",
+					"description": "Apply standard project management techniques to a digital and technology solution project working effectively within a team.",
+					"programmeLearningOutcomes": [
+						"Creative Problem Solving",
+						"Practical Realisation",
+						"Communication"
+					]
+				}
+			]
+		},
+		{
+			"code": "DT404",
+			"title": "Sustainable Technology Solutions",
+			"description": "In this module, you will examine the value of technology investments within a business context. You will critically reflect upon the value that technological investment, sustainable development and an understanding of contemporary issues can bring to an organisation. You will develop informed business investment proposals to address issues relating to organisational sustainability for presentation to organisational stakeholders.",
+			"moduleChallenge": [
+				{
+					"id": "MCA",
+					"title": "Research Portfolio",
+					"weighting": 60,
+					"learningOutcomes": ["LO2", "LO3"]
+				},
+				{
+					"id": "MCB",
+					"title": "Sustainable Investment Proposal",
+					"weighting": 40,
+					"learningOutcomes": ["LO1", "LO4"]
+				}],
+			"learningOutcomes": [
+				{
+					"id": "LO1",
+					"description": "Explain how organizations adapt and exploit digital technology solutions for sustainable competitive advantage",
+					"programmeLearningOutcomes": ["Discipline Skills and Knowledge"]
+				},
+				{
+					"id": "LO2",
+					"description": "Understand principles of strategic decision making for sustainable digital and technology solutions acquisition or development",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Discipline Skills and Knowledge"
+					]
+				},
+				{
+					"id": "LO3",
+					"description": "Apply research methods to critically reflect upon issues of sustainability within digital and technology solutions",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Creative Problem Solving",
+						"Politically, socially, and environmentally responsible"
+					]
+				},
+				{
+					"id": "LO4",
+					"description": "Investigate and contrast ideas to create a data informed business proposal for a sustainable technology solution.",
+					"programmeLearningOutcomes": ["Informed Decision Making"]
+				}
+			]
+		},
+		{
+			"code": "DT501",
+			"title": "Secure Systems & Infrastructure",
+			"description": "In this module, you will critically analyse the security of organisational systems and network infrastructure. You will develop skills and knowledge in planning, designing and managing secure network solutions to support organisational needs. You will also develop your skills and knowledge in identifying, analysing and mitigating common vulnerabilities relating to information and network systems. You will present findings and recommendations to a range of stakeholders within the organisation.",
+			"moduleChallenge": [
+				{
+					"id": "MCA",
+					"title": "Portfolio demonstrating secure network development practices",
+					"weighting": 70,
+					"learningOutcomes": ["LO1", "LO2", "LO3", "LO4"]
+				},
+				{
+					"id": "MCB",
+					"title": "Common vulnerabilities and mitigations Infographic presentation with annotated bibliography",
+					"weighting": 30,
+					"learningOutcomes": ["LO1", "LO2", "LO3", "LO4"]
+				}],
+			"learningOutcomes": [
+				{
+					"id": "LO1",
+					"description": "Critically reflect upon the technology solutions lifecycle in the context of organizational requirements.",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Discipline Skills and Knowledge"
+					]
+				},
+				{
+					"id": "LO2",
+					"description": "Critically reflect upon the network design concepts to plan and design a simple network solution.",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Discipline Skills and Knowledge"
+					]
+				},
+				{
+					"id": "LO3",
+					"description": "Critically reflect upon the network security concepts to identify, mitigate and resolve common vulnerabilities.",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Discipline Skills and Knowledge"
+					]
+				},
+				{
+					"id": "LO4",
+					"description": "Analyse and develop a secure network solution in an organisational context applying relevant technical and professional standards",
+					"programmeLearningOutcomes": [
+						"Creative Problem Solving",
+						"Practical Realisation"
+					]
+				}
+			]
+		},
+		{
+			"code": "DT502",
+			"title": "Data Solutions Architecture",
+			"description": "In this module you will critically reflect upon business and technical requirements to develop a secure database solution within a business context. You will develop skills and knowledge in data engineering, critically analysing organisational information requirements to develop and model data solutions, applying appropriate tools and technologies to develop an effective resource to successfully solve business problems.",
+			"moduleChallenge": [
+				{
+					"id": "MCA",
+					"title": "Critical Reflection on Data Processes",
+					"weighting": 30,
+					"learningOutcomes": ["LO1", "LO2", "LO3"]
+				},
+				{
+					"id": "MCB",
+					"title": "Practical Application of Data Architecture",
+					"weighting": 70,
+					"learningOutcomes": ["LO1", "LO2", "LO3", "LO4"]
+				}],
+			"learningOutcomes": [
+				{
+					"id": "LO1",
+					"description": "Critically reflect upon data architecture and data delivery methods for a practical business context",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Discipline Skills and Knowledge"
+					]
+				},
+				{
+					"id": "LO2",
+					"description": "Critically reflect upon a range of approaches to data processing and storage solutions within a business context",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Discipline Skills and Knowledge"
+					]
+				},
+				{
+					"id": "LO3",
+					"description": "Analyse an organisational business requirement to propose and design a data architecture solution.",
+					"programmeLearningOutcomes": [
+						"Creative Problem Solving",
+						"Informed Decision Making"
+					]
+				},
+				{
+					"id": "LO4",
+					"description": "Analyse and apply digital tools and skills to implement a data architecture solution.",
+					"programmeLearningOutcomes": [
+						"Practical Realisation",
+						"Digital Proficiency"
+					]
+				}
+			]
+		},
+		{
+			"code": "DT503",
+			"title": "Using & Presenting Business Intelligence",
+			"description": "In this module you will develop your skills and knowledge in data storytelling. You will develop knowledge of statistical analysis techniques in order to derive narratives from data and provide business intelligence. You will develop an understanding of data visualisation techniques to solve business problems, communicating your findings to stakeholders for decision making purposes.",
+			"moduleChallenge": [
+				{
+					"id": "MCA",
+					"title": "Practical Data Analysis & Report",
+					"weighting": 60,
+					"learningOutcomes": ["LO1", "LO2", "LO3"]
+				},
+				{
+					"id": "MCB",
+					"title": "Stakeholder presentation and recommendations",
+					"weighting": 40,
+					"learningOutcomes": ["LO4"]
+				}],
+			"learningOutcomes": [
+				{
+					"id": "LO1",
+					"description": "Critically analyse data analysis and reporting techniques, identifying barriers to improve organisational outputs",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Discipline Skills and Knowledge"
+					]
+				},
+				{
+					"id": "LO2",
+					"description": "Analyse organisational problems to define data requirements applying digital tools to source, cleanse and explore data",
+					"programmeLearningOutcomes": [
+						"Creative Problem Solving",
+						"Digital Proficiency"
+					]
+				},
+				{
+					"id": "LO3",
+					"description": "Analyse and apply data analysis theories and skills to a data analysis problem within an organisational context",
+					"programmeLearningOutcomes": [
+						"Practical Realisation",
+						"Digital Proficiency",
+						"Discipline Skills and Knowledge"
+					]
+				},
+				{
+					"id": "LO4",
+					"description": "Communicate findings from data analysis, applying storytelling techniques, communicating in a professional manner with good understanding of audience and purpose.",
+					"programmeLearningOutcomes": [
+						"Professionalism",
+						"Communication"
+					]
+				}
+			]
+		},
+		{
+			"code": "DT504",
+			"title": "Data Informed Solutions",
+			"description": "In this module, you will develop your knowledge and skills around the acquisition of technology solutions. Identifying the key influences in strategic decision making. You will critically reflect upon data systems technology to develop well structured, research informed proposals, identifying opportunities for improvement and investment within a business context. You will critically analyse and discuss your proposal as part of a professional discussion with key stakeholders.",
+			"moduleChallenge": [
+				{
+					"id": "MCA",
+					"title": "Data Informed Investment Proposal",
+					"weighting": 60,
+					"learningOutcomes": ["LO1", "LO2", "LO3"]
+				},
+				{
+					"id": "MCB",
+					"title": "Professional Discussion",
+					"weighting": 40,
+					"learningOutcomes": ["LO4"]
+				}],
+			"learningOutcomes": [
+				{
+					"id": "LO1",
+					"description": "Critically reflect upon a business problem to evaluate and apply robust research techniques to develop multiple digital technology solutions.",
+					"programmeLearningOutcomes": ["Critical Thinking"]
+				},
+				{
+					"id": "LO2",
+					"description": "Apply a data analysis techniques to evaluate a range of proposed technology solutions",
+					"programmeLearningOutcomes": ["Digital Proficiency"]
+				},
+				{
+					"id": "LO3",
+					"description": "Develop informed digital technology solutions identifying and mitigating risk, cost and resource constraints.",
+					"programmeLearningOutcomes": ["Creative Problem Solving"]
+				},
+				{
+					"id": "LO4",
+					"description": "Communicate an informed digital technology solution proposal, applying storytelling techniques, communicating in a professional manner with good understanding of audience and purpose.",
+					"programmeLearningOutcomes": [
+						"Professionalism",
+						"Communication"
+					]
+				}
+			]
+		},
+		{
+			"code": "DT601",
+			"title": "Collaborative Professional Development",
+			"description": "In this module, you will critically reflect upon your own professional working practices to develop a professional development plan. You will work collaboratively with others to develop your, influencing, negotiation and persuasion skills to address complex organisational challenges. You will demonstrate your ability to work professionally, flexibly and collaboratively, mastering business disciplines and ethics to complete tasks and projects to a high standard. You will provide and integrate peer feedback in order to develop a sustainable, career focused personal development plan.",
+			"moduleChallenge": [
+				{
+					"id": "MCA",
+					"title": "Reflective practice portfolio",
+					"weighting": 70,
+					"learningOutcomes": ["LO1", "LO2", "LO3"]
+				},
+				{
+					"id": "MCB",
+					"title": "Personal Development Portfolio (PDP)",
+					"weighting": 30,
+					"learningOutcomes": ["LO4"]
+				}],
+			"learningOutcomes": [
+				{
+					"id": "LO1",
+					"description": "Critically reflect on the relationship between self and others through the lens of dynamic social interaction",
+					"programmeLearningOutcomes": ["Critical Thinking"]
+				},
+				{
+					"id": "LO2",
+					"description": "Apply collaborative skills related to influencing, negotiation and persuasion to address challenges in complex settings.",
+					"programmeLearningOutcomes": [
+						"Collaboration",
+						"Communication"
+					]
+				},
+				{
+					"id": "LO3",
+					"description": "Understand professional practice and the importance of personal presence",
+					"programmeLearningOutcomes": ["Collaboration"]
+				},
+				{
+					"id": "LO4",
+					"description": "Integrate and provide constructive feedback to create a plan for personal professional development.",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Practical Realisation"
+					]
+				}
+			]
+		},
+		{
+			"code": "DT602",
+			"title": "Research Ethics",
+			"description": "In this module, you will develop your practice of conducting ethical research in a professional environment. You will evaluate data analysis project proposals and understand the potential impact on social, environmental, and political factors. Throughout this module, you will also develop an understanding of problem-solving techniques and critically reflect upon organisational business needs to create well-researched and complex data analysis solutions. You will critically analyse project arguments to develop a data-informed solution to address complex organisational requirements. You will present a well researched, data informed project proposal that reflects and implements stakeholder feedback into a final mutually agreed data analysis solution proposal.",
+			"moduleChallenge": [
+				{
+					"id": "MCA",
+					"title": "Critical Research Portfolio",
+					"weighting": 70,
+					"learningOutcomes": ["LO1", "LO2", "LO3"]
+				},
+				{
+					"id": "MCB",
+					"title": "Negotiated Project Proposal",
+					"weighting": 30,
+					"learningOutcomes": ["LO4"]
+				}],
+			"learningOutcomes": [
+				{
+					"id": "LO1",
+					"description": "Critically reflect upon organisational business needs, utilising problem solving techniques to develop well researched complex data analysis solution development arguments.",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Creative Problem Solving"
+					]
+				},
+				{
+					"id": "LO2",
+					"description": "Critically evaluate data analysis project proposal arguments in context of political, social and environmental issues.",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Politically, socially, and environmentally responsible"
+					]
+				},
+				{
+					"id": "LO3",
+					"description": "Employ a range of project arguments to develop a well researched and data informed data analysis solution proposal for a complex business context.",
+					"programmeLearningOutcomes": [
+						"Creative Problem Solving",
+						"Digital Proficiency",
+						"Informed Decision Making"
+					]
+				},
+				{
+					"id": "LO4",
+					"description": "Present a project proposal concept, communicating effectively, reflecting and implementing stakeholder feedback into a final mutually agreed data analysis solution proposal.",
+					"programmeLearningOutcomes": [
+						"Collaboration",
+						"Communication"
+					]
+				}
+			]
+		},
+		{
+			"code": "DT603",
+			"title": "Data Analysis Solution",
+			"description": "",
+			"moduleChallenge": [
+				{
+					"id": "MCA",
+					"title": "Data Analysis Project",
+					"weighting": 70,
+					"learningOutcomes": ["LO1", "LO2", "LO3"]
+				},
+				{
+					"id": "MCB",
+					"title": "Project Diary",
+					"weighting": 30,
+					"learningOutcomes": ["LO4"]
+				}],
+			"learningOutcomes": [
+				{
+					"id": "LO1",
+					"description": "Critically evaluate and employ project management techniques to produce the data analysis solution, mitigating risks and applying professional collaborative processes to address complex business challenges.",
+					"programmeLearningOutcomes": [
+						"Practical Realisation",
+						"Professionalism",
+						"Collaboration"
+					]
+				},
+				{
+					"id": "LO2",
+					"description": "Create a data analysis solution to solve complex data analysis problems, employing a range of digital tools, discipline specific concepts and skills for complex business contexts.",
+					"programmeLearningOutcomes": [
+						"Creative Problem-Solving",
+						"Digital Proficiency"
+					]
+				},
+				{
+					"id": "LO3",
+					"description": "Employ a range of techniques to extract, explore and analyse data utilising the data analysis solution in complex organisational business contexts.",
+					"programmeLearningOutcomes": [
+						"Digital Proficiency",
+						"Discipline Skills and Knowledge"
+					]
+				},
+				{
+					"id": "LO4",
+					"description": "Record the development of the data analysis solution, critically reflecting upon the project development, personal performance and overall effectiveness of the project.",
+					"programmeLearningOutcomes": [
+						"Critical Thinking"
+					]
+				}
+			]
+		},
+		{
+			"code": "DT604",
+			"title": "Project Report",
+			"description": "",
+			"moduleChallenge": [
+				{
+					"id": "MCA",
+					"title": "To be updated",
+					"weighting": 50,
+					"learningOutcomes": ["LO1", "LO2"]
+				},
+				{
+					"id": "MCB",
+					"title": "Project and Portfolio Presentation",
+					"weighting": 50,
+					"learningOutcomes": ["LO2", "LO3", "LO4"]
+				}],
+			"learningOutcomes": [
+				{
+					"id": "LO1",
+					"description": "Critically reflect upon project outcomes, evaluating professional working practices communicating with good understanding of audience and purpose.",
+					"programmeLearningOutcomes": [
+						"Critical Thinking",
+						"Professionalism",
+						"Discipline Skills and Knowledge",
+						"Communication"
+					]
+				},
+				{
+					"id": "LO2",
+					"description": "Communicate findings from data analysis solution project with good understanding of audience and relevance to organisational business context",
+					"programmeLearningOutcomes": [
+						"Professionalism",
+						"Communication"
+					]
+				},
+				{
+					"id": "LO3",
+					"description": "Employ a range of digital tools to produce a developmental portfolio demonstrating application of knowledge, skills and behaviours",
+					"programmeLearningOutcomes": [
+						"Digital Proficiency",
+						"Communication"
+					]
+				},
+				{
+					"id": "LO4",
+					"description": "Communicate arguments and reasoning effectively demonstrating application of knowledge, skills and behaviours with good understanding of audience and relevance to organisational business context.",
+					"programmeLearningOutcomes": [
+						"Discipline Skills and Knowledge",
+						"Communication"
+					]
+				}
+			]
+		}
+	]
+}

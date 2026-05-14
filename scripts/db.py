@@ -67,7 +67,8 @@ CREATE TABLE IF NOT EXISTS moderator_themes (
   cohort_code TEXT NOT NULL,
   theme TEXT NOT NULL,
   count INTEGER NOT NULL DEFAULT 1,
-  notes TEXT
+  notes TEXT,
+  lo_id TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_grades_module  ON learner_grades(module_code);
@@ -96,6 +97,11 @@ def hash_uln(uln, salt):
 def connect():
     conn = sqlite3.connect(DB_PATH)
     conn.executescript(SCHEMA)
+    # Migration: add lo_id to existing moderator_themes tables that pre-date it.
+    cols = [r[1] for r in conn.execute("PRAGMA table_info(moderator_themes)").fetchall()]
+    if "lo_id" not in cols:
+        conn.execute("ALTER TABLE moderator_themes ADD COLUMN lo_id TEXT")
+        conn.commit()
     return conn
 
 
@@ -151,8 +157,8 @@ def cmd_record_pass():
         )
     for t in themes:
         cur.execute(
-            "INSERT INTO moderator_themes (pass_id, module_code, cohort_code, theme, count, notes) "
-            "VALUES (?, ?, ?, ?, ?, ?)",
+            "INSERT INTO moderator_themes (pass_id, module_code, cohort_code, theme, count, notes, lo_id) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?)",
             (
                 pass_id,
                 payload["module_code"],
@@ -160,6 +166,7 @@ def cmd_record_pass():
                 t["theme"],
                 int(t.get("count", 1)),
                 t.get("notes"),
+                t.get("lo_id"),
             ),
         )
     conn.commit()
@@ -196,6 +203,13 @@ def cmd_summary(module, cohort=None):
         args,
     ).fetchall()
 
+    by_lo = conn.execute(
+        f"SELECT lo_id, SUM(count) AS total_count, COUNT(DISTINCT theme) AS distinct_themes "
+        f"FROM moderator_themes WHERE {where} AND lo_id IS NOT NULL "
+        f"GROUP BY lo_id ORDER BY total_count DESC",
+        args,
+    ).fetchall()
+
     passes = conn.execute(
         f"SELECT id, cohort_code, run_at, sample_size FROM moderation_passes WHERE {where} "
         f"ORDER BY run_at DESC LIMIT 20",
@@ -207,6 +221,7 @@ def cmd_summary(module, cohort=None):
         "overall": dict(overall) if overall else {},
         "bands": [dict(b) for b in bands],
         "top_themes": [dict(t) for t in themes],
+        "themes_by_lo": [dict(r) for r in by_lo],
         "recent_passes": [dict(p) for p in passes],
     }
     print(json.dumps(result, indent=2, default=str))
