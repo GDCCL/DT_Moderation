@@ -1,0 +1,14 @@
+# Apprenticeship data stays local. Submissions, feedback, and grades
+# spreadsheets are not committed (GDPR / institutional policy).
+modules/*/cohorts/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Editor / OS noise
+.DS_Store
+Thumbs.db
+*~
+*.swp
