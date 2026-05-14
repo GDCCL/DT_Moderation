@@ -2,6 +2,9 @@
 # spreadsheets are not committed (GDPR / institutional policy).
 modules/*/cohorts/
 
+# Hash salt for analytics.db. Share with the team out of band; never commit.
+.env
+
 # Python
 __pycache__/
 *.pyc
